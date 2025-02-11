@@ -10,27 +10,31 @@ def main():
     Main function. Read file. Count required attributes
     :return:
     """
-
     filename = input("Enter program filename: ")
     lines = open(filename).readlines()
-    num_for_loops = 0
 
-    for line in lines:
-        if line.strip().startswith("for"):
-            num_for_loops += 1
+    count_for_loops(filename, lines)
+    count_while_loops(filename, lines)
+    count_if_loops(filename, lines)
+    
+# count for loops     
+def count_for_loops(filename, lines):
+    num_for_loops = sum(1 for line in lines if line.strip().startswith("for"))
+    print(f"Program {filename} contain {num_for_loops} for loops")
 
-    print("Program {} contain {} for loops".format(filename, num_for_loops))
+# count for loops  
+def count_while_loops(filename, lines):
+    num_while_loops = sum(1 for line in lines if line.strip().startswith("while"))
+    print(f"Program {filename} contain {num_while_loops} for loops")
 
-    num_while_loops = 0
-    for line in lines:
-        if line.strip().startswith("while"):
-            num_while_loops += 1
-
-    print("Program {} contain {} for loops".format(filename, num_while_loops))
-
+# count for loops  
+def count_if_loops(filename, lines):
     num_if_loops = 0
     for line in lines:
         if line.strip().startswith("if"):
             num_if_loops += 1
 
-    print("Program {} contain {} for loops".format(filename, num_if_loops))
+    print(f"Program {filename} contain {num_if_loops} for loops")
+
+
+main()
